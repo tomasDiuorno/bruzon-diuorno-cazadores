@@ -17,11 +17,4 @@ public class AgenciaDeSeguridadTest {
 	public void queExisteLaAgenciaDeSeguridadDeCazadoresDeRecompenzas() {
 		assertNotNull(agencia);
 	}
-	
-	@Test
-	public void envioAUnCazadorAUnaZonaEspecifica() {
-		Cazador cazadorUno = new Rural();
-		Zona zonaDeCaza = new Zona("La Matanza");
-		
-	}
 }
