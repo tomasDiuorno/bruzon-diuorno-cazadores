@@ -50,4 +50,17 @@ public class Profugo {
 		return coberturaLegal;
 	}
 
+	public void setInocencia(Integer nuevaInocencia) {
+		this.inocencia = nuevaInocencia;
+	}
+
+	public void setNervioso(Boolean intimidar) {
+		this.nervioso = intimidar;
+		// agregar excepcion por proteccion legal
+	}
+
+	public void reducirHabilidad(Integer nuevaHabilidad) {
+		this.habilidad = nuevaHabilidad;		
+	}
+
 }

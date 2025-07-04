@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class AgenciaDeSeguridadTest {
 	AgenciaDeSeguridad agencia;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		agencia = new AgenciaDeSeguridad();
@@ -17,4 +17,10 @@ public class AgenciaDeSeguridadTest {
 	public void queExisteLaAgenciaDeSeguridadDeCazadoresDeRecompenzas() {
 		assertNotNull(agencia);
 	}
+	
+	@Test
+	public void unProfugoEsCapturadoYAlmacenadoEnLaAgencia() {
+		
+	}
+		
 }

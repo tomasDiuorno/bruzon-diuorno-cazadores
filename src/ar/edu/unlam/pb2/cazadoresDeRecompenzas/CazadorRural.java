@@ -17,6 +17,13 @@ public class CazadorRural extends Cazador {
 		return false;
 	}
 
+	@Override
+	void intimidar(Profugo profugo) {
+	    Integer nuevaInocencia = Math.max(0, profugo.getInocencia() - 2);
+	    profugo.setInocencia(nuevaInocencia);
+	    profugo.setNervioso(true);
+	}
+
 	
 
 }
