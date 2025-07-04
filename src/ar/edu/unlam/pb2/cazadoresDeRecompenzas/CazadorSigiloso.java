@@ -18,7 +18,7 @@ public class CazadorSigiloso extends Cazador {
 	}
 	
 	@Override
-	protected void intimidar(Profugo profugo) {
+	protected void intimidar(Profugo profugo) throws NoPuedeSerNerviosoException {
 	    super.intimidar(profugo);
 	    int nuevaHabilidad = Math.max(0, profugo.getHabilidad() - 5);
 	    profugo.setHabilidad(nuevaHabilidad);

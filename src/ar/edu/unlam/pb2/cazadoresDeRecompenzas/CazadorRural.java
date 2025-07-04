@@ -16,11 +16,15 @@ public class CazadorRural extends Cazador {
 		}
 		return false;
 	}
-
+ 
 	@Override
-	protected void intimidar(Profugo profugo) {
+	protected void intimidar(Profugo profugo) throws NoPuedeSerNerviosoException {
 	    super.intimidar(profugo);
-	    profugo.setNervioso(true);
+	    try {
+			profugo.setNervioso(true);
+		} catch (NoPuedeSerNerviosoException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

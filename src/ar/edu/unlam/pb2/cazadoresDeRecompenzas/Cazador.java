@@ -18,7 +18,7 @@ public abstract class Cazador {
     	this.id = proximoId++;
     }
     
-	abstract Boolean puedeCapturar(Profugo profugo);
+	abstract Boolean puedeCapturar(Profugo profugo) throws NoPuedeSerNerviosoException;
 	
 	public void sumarExperiencia(Set<Profugo> intimidados, Integer cantidadCapturados) {
 		Integer minHabilidad = 100;
@@ -36,7 +36,7 @@ public abstract class Cazador {
 	    this.experiencia += minHabilidad + (2 * cantidadCapturados);
 	}
 
-	public void capturarEnZona(Zona zona) {
+	public void capturarEnZona(Zona zona) throws NoPuedeSerNerviosoException {
 		Set<Profugo> profugosZona = new HashSet<>(zona.getProfugos());
 	    int cantidadCapturados = 0;
 	    intimidados.clear(); 
@@ -55,7 +55,7 @@ public abstract class Cazador {
 	    sumarExperiencia(intimidados, cantidadCapturados);
 	}
 	
-	protected void intimidar(Profugo profugo) {
+	protected void intimidar(Profugo profugo) throws NoPuedeSerNerviosoException {
 	    Integer nuevaInocencia = Math.max(0, profugo.getInocencia() - 2);
 	    profugo.setInocencia(nuevaInocencia);
 	}

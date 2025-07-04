@@ -9,6 +9,7 @@ public class Profugo {
 	private Boolean nervioso;
 	private Boolean coberturaLegal;
 	private Integer id;
+	private Boolean poseeEntrenamientoElite;
 	private static Integer proximoId=1;
 	
 	public Profugo(Integer inocencia, Integer habilidad, Boolean nervioso) {
@@ -16,6 +17,7 @@ public class Profugo {
 		this.habilidad = habilidad;
 		this.nervioso = nervioso;
 		this.coberturaLegal = false;
+		this.poseeEntrenamientoElite = false;
 		this.id = proximoId++;
 	}
 
@@ -30,6 +32,7 @@ public class Profugo {
 
 	public void entrenarElite() {
 		this.nervioso = false;
+		this.poseeEntrenamientoElite = true;
 	}
 
 	public void proteccionLegal() {
@@ -59,7 +62,10 @@ public class Profugo {
 		this.inocencia = inocencia;
 	}
 
-	public void setNervioso(Boolean nervioso) {
+	public void setNervioso(Boolean nervioso) throws NoPuedeSerNerviosoException {
+		if(this.poseeEntrenamientoElite) {
+			throw new NoPuedeSerNerviosoException("Un profugo con entrenamiento Elite no puede ser nervioso");
+		}
 		this.nervioso = nervioso;
 	}
 
@@ -83,6 +89,4 @@ public class Profugo {
 		Profugo other = (Profugo) obj;
 		return Objects.equals(id, other.id);
 	}
-
-	
 }
