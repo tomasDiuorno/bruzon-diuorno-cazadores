@@ -15,4 +15,13 @@ public class Zona {
 	public void agregarProfugo(Profugo profugo) {
 		profugos.add(profugo);
 	}
+
+	public void eliminarProfugo(Profugo profugo) {
+        profugos.remove(profugo);
+    }
+	
+	public Set<Profugo> getProfugos() {
+		return profugos;
+	}
+	 
 }

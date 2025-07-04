@@ -11,18 +11,18 @@ public class CazadorUrbano extends Cazador {
 	@Override
 	Boolean puedeCapturar(Profugo profugo) {
 		if(this.experiencia > profugo.getInocencia()) {
-			if(profugo.getNervioso()==false) {//si el profugo no es nervioso urbano lo captura 
+			if(profugo.getNervioso()==false) {
 				return this.capturados.add(profugo);
-				//			}else {
-				//				profugo.inocencia(null, experiencia);// aca iria la logica de profugo esto es momentaneo
-				//			}
+						}
 			}
-			
-		}
 		return false;
 	}
 
-
+	@Override
+	protected void intimidar(Profugo profugo) {
+	    super.intimidar(profugo);
+	    profugo.setNervioso(false);
+	}
 
 
 }

@@ -17,6 +17,10 @@ public class CazadorRural extends Cazador {
 		return false;
 	}
 
-	
+	@Override
+	protected void intimidar(Profugo profugo) {
+	    super.intimidar(profugo);
+	    profugo.setNervioso(true);
+	}
 
 }

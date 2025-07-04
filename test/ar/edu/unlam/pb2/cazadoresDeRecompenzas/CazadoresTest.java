@@ -35,7 +35,6 @@ public class CazadoresTest {
 		assertEquals(valorEsperado,valorObtenido);
 	}
 	
-	
 	@Test
 	public void queAlCapturarUnProfugoComoCazadorRuralSeRegistreEnCapturados() {
 		Cazador cazador = new CazadorRural(60);
@@ -77,5 +76,17 @@ public class CazadoresTest {
 		assertTrue(cazadorUno.puedeCapturar(profugoUno));
 		assertEquals(valorEsperado,valorObtenido);
 	}
+	
+	@Test
+    public void queUnCazadorSigilosoIntimideAUnProfugoConMayorHabilidad() {
+        Profugo profugo = new Profugo(60, 55, false); 
+        Cazador cazador = new CazadorSigiloso(75);
+        Zona zona = new Zona("Texas");
+        zona.agregarProfugo(profugo);
+        cazador.capturarEnZona(zona);
+        assertTrue(cazador.intimidados.contains(profugo));
+        assertEquals(58, profugo.getInocencia().intValue()); 
+        assertEquals(50, profugo.getHabilidad().intValue()); 
+    }
 	
 }

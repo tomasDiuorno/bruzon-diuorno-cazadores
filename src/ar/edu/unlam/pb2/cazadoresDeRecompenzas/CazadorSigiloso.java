@@ -4,7 +4,7 @@ public class CazadorSigiloso extends Cazador {
 
 	public CazadorSigiloso(Integer experiencia) {
 		super(experiencia);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override
@@ -15,6 +15,13 @@ public class CazadorSigiloso extends Cazador {
 			}
 		}
 		return false;
+	}
+	
+	@Override
+	protected void intimidar(Profugo profugo) {
+	    super.intimidar(profugo);
+	    int nuevaHabilidad = Math.max(0, profugo.getHabilidad() - 5);
+	    profugo.setHabilidad(nuevaHabilidad);
 	}
 
 }
