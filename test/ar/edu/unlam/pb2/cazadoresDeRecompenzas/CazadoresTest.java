@@ -22,7 +22,7 @@ public class CazadoresTest {
 		cazador.puedeCapturar(profugo);
 		profugo.getNervioso();
 		Integer valorEsperado = 1;
-		Integer valorObtenido = cazador.getCapturados();
+		Integer valorObtenido = cazador.getcantidadDeCapturados();
 		assertEquals(valorEsperado,valorObtenido);
 	}
 
@@ -43,7 +43,7 @@ public class CazadoresTest {
 		cazador.puedeCapturar(profugo);
 		profugo.getNervioso();
 		Integer valorEsperado = 1;
-		Integer valorObtenido = cazador.getCapturados();
+		Integer valorObtenido = cazador.getcantidadDeCapturados();
 		assertEquals(valorEsperado,valorObtenido);
 	}
 	
@@ -63,7 +63,18 @@ public class CazadoresTest {
 		cazador.puedeCapturar(profugo);
 		profugo.getNervioso();
 		Integer valorEsperado = 1;
-		Integer valorObtenido = cazador.getCapturados();
+		Integer valorObtenido = cazador.getcantidadDeCapturados();
+		assertEquals(valorEsperado,valorObtenido);
+	}
+	
+	@Test
+	public void queNoSePuedaCapturarUnProfugoConHabilidadMayorA50PorCazadorSigiloso() {
+		Cazador cazadorUno = new CazadorSigiloso(75);
+		Profugo profugoUno = new Profugo(60, 38,true);
+		Profugo profugoDos = new Profugo(60, 51,true);
+		Boolean valorEsperado = false;
+		Boolean valorObtenido = cazadorUno.puedeCapturar(profugoDos);
+		assertTrue(cazadorUno.puedeCapturar(profugoUno));
 		assertEquals(valorEsperado,valorObtenido);
 	}
 	
