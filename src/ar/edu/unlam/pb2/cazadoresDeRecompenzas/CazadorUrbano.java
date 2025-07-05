@@ -8,14 +8,17 @@ public class CazadorUrbano extends Cazador {
 
 	@Override
 	Boolean puedeCapturar(Profugo profugo) throws NoPuedeSerNerviosoException {
-		if (this.experiencia > profugo.getInocencia()) {
-			if (profugo.getNervioso() == false) {
-				return this.capturados.add(profugo);
+		Boolean capturado = false;
+		if (!profugo.getCoberturaLegal()) {
+			if (this.experiencia > profugo.getInocencia()) {
+				if (profugo.getNervioso() == false) {
+					capturado = this.capturados.add(profugo);
+				}
+			} else {
+				this.intimidar(profugo);
 			}
-		}else {
-			this.intimidar(profugo);
 		}
-		return false;
+		return capturado;
 	}
 
 	@Override

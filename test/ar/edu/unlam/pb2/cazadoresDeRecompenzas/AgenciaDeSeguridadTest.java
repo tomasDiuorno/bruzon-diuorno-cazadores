@@ -22,7 +22,7 @@ public class AgenciaDeSeguridadTest {
 	}
 
 	@Test
-	public void queSePuedaObtenerElProfugoMasHabilCapturadoPorCazadorSigiloso() throws NoPuedeSerNerviosoException {
+	public void queSePuedaObtenerElProfugoMasHabilCapturadoPorCazadorSigiloso() throws NoPuedeSerNerviosoException, HabilidadInvalidaException {
 		Cazador cazadorUno = new CazadorSigiloso(75);
 		Profugo profugoUno = new Profugo(60, 38,true);
 		Profugo profugoDos = new Profugo(60, 47,true);
@@ -40,7 +40,7 @@ public class AgenciaDeSeguridadTest {
 	
 	
 	@Test
-	public void queSePuedanObtenerElCazadorConMasCapturasRealizadas() throws NoPuedeSerNerviosoException {
+	public void queSePuedanObtenerElCazadorConMasCapturasRealizadas() throws NoPuedeSerNerviosoException, HabilidadInvalidaException {
 		Cazador cazadorUno = new CazadorSigiloso(75);
 		Cazador cazadorDos = new CazadorSigiloso(75);
 		Profugo profugoUno = new Profugo(60, 38,true);
@@ -61,7 +61,7 @@ public class AgenciaDeSeguridadTest {
 	}
 	
 	@Test
-	public void queSeObtenganTodosLosProfugosCapturadosPorSusCazadores() throws NoPuedeSerNerviosoException {
+	public void queSeObtenganTodosLosProfugosCapturadosPorSusCazadores() throws NoPuedeSerNerviosoException, HabilidadInvalidaException {
 		Cazador cazadorUno = new CazadorSigiloso(75);
 		Cazador cazadorDos = new CazadorSigiloso(75);
 		Profugo profugoUno = new Profugo(60, 38,true);

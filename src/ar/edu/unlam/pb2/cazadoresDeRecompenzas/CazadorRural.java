@@ -4,23 +4,28 @@ public class CazadorRural extends Cazador {
 
 	public CazadorRural(Integer experiencia) {
 		super(experiencia);
-		
+
 	}
 
 	@Override
-	Boolean puedeCapturar(Profugo profugo) {
-		if(this.experiencia > profugo.getInocencia()) {
-			if(profugo.getNervioso()==true) {//si el profugo es nervioso  lo captura 
-				return this.capturados.add(profugo);
+	Boolean puedeCapturar(Profugo profugo) throws NoPuedeSerNerviosoException {
+		Boolean capturado = false;
+		if (!profugo.getCoberturaLegal()) {
+			if (this.experiencia > profugo.getInocencia()) {
+				if (profugo.getNervioso() == true) {// si el profugo es nervioso lo captura
+					capturado = this.capturados.add(profugo);
+				} else {
+					intimidar(profugo);
+				}
 			}
 		}
-		return false;
+		return capturado;
 	}
- 
+
 	@Override
 	protected void intimidar(Profugo profugo) throws NoPuedeSerNerviosoException {
-	    super.intimidar(profugo);
-	    try {
+		super.intimidar(profugo);
+		try {
 			profugo.setNervioso(true);
 		} catch (NoPuedeSerNerviosoException e) {
 			e.printStackTrace();

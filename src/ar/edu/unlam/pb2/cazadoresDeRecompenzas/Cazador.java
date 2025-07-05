@@ -47,7 +47,6 @@ public abstract class Cazador {
 	            zona.eliminarProfugo(profugo);
 	            cantidadCapturados++;
 	        } else {
-	            intimidar(profugo);
 	            intimidados.add(profugo);
 	        }
 	    }

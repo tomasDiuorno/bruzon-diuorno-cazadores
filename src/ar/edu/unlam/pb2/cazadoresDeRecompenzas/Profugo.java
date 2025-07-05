@@ -10,11 +10,15 @@ public class Profugo {
 	private Boolean coberturaLegal;
 	private Integer id;
 	private Boolean poseeEntrenamientoElite;
-	private static Integer proximoId=1;
-	
-	public Profugo(Integer inocencia, Integer habilidad, Boolean nervioso) {
+	private static Integer proximoId = 1;
+
+	public Profugo(Integer inocencia, Integer habilidad, Boolean nervioso) throws HabilidadInvalidaException {
 		this.inocencia = inocencia;
-		this.habilidad = habilidad;
+		if (habilidad < 0 || habilidad > 100) {
+			throw new HabilidadInvalidaException("La habilidad ingresada no es valida.");
+		} else {
+			this.habilidad = habilidad;
+		}
 		this.nervioso = nervioso;
 		this.coberturaLegal = false;
 		this.poseeEntrenamientoElite = false;
@@ -23,9 +27,9 @@ public class Profugo {
 
 	public void entrenarArtesMarciales() {
 		final Integer habilidadMax = 100;
-		if((this.habilidad * 2) > habilidadMax) {
+		if ((this.habilidad * 2) > habilidadMax) {
 			this.habilidad = habilidadMax;
-		}else {
+		} else {
 			this.habilidad *= 2;
 		}
 	}
@@ -36,9 +40,9 @@ public class Profugo {
 	}
 
 	public void proteccionLegal() {
-		if(this.inocencia < 40) {
+		if (this.inocencia < 40) {
 			this.inocencia = 40;
-			this.coberturaLegal  = true;
+			this.coberturaLegal = true;
 		}
 	}
 
@@ -63,7 +67,7 @@ public class Profugo {
 	}
 
 	public void setNervioso(Boolean nervioso) throws NoPuedeSerNerviosoException {
-		if(this.poseeEntrenamientoElite) {
+		if (this.poseeEntrenamientoElite) {
 			throw new NoPuedeSerNerviosoException("Un profugo con entrenamiento Elite no puede ser nervioso");
 		}
 		this.nervioso = nervioso;

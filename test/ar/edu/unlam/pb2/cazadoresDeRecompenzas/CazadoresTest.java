@@ -7,7 +7,8 @@ import org.junit.Test;
 public class CazadoresTest {
 
 	@Test
-	public void queUnCazadorUrbanoPuedaCapturarUnProfugo() throws NoPuedeSerNerviosoException {
+	public void queUnCazadorUrbanoPuedaCapturarUnProfugo()
+			throws NoPuedeSerNerviosoException, HabilidadInvalidaException {
 		Cazador cazador = new CazadorUrbano(60);
 		Profugo profugo = new Profugo(34, 14, false);
 		Boolean valorEsperado = true;
@@ -16,7 +17,8 @@ public class CazadoresTest {
 	}
 
 	@Test
-	public void queAlCapturarUnProfugoSeRegistreEnCapturados() throws NoPuedeSerNerviosoException {
+	public void queAlCapturarUnProfugoSeRegistreEnCapturados()
+			throws NoPuedeSerNerviosoException, HabilidadInvalidaException {
 		Cazador cazador = new CazadorUrbano(60);
 		Profugo profugo = new Profugo(34, 14, false);
 		cazador.puedeCapturar(profugo);
@@ -27,7 +29,8 @@ public class CazadoresTest {
 	}
 
 	@Test
-	public void queUnCazadorRuralPuedaCapturarUnProfugo() throws NoPuedeSerNerviosoException {
+	public void queUnCazadorRuralPuedaCapturarUnProfugo()
+			throws NoPuedeSerNerviosoException, HabilidadInvalidaException {
 		Cazador cazador = new CazadorRural(60);
 		Profugo profugo = new Profugo(34, 14, false);
 		Boolean valorEsperado = false;
@@ -36,7 +39,8 @@ public class CazadoresTest {
 	}
 
 	@Test
-	public void queAlCapturarUnProfugoComoCazadorRuralSeRegistreEnCapturados() throws NoPuedeSerNerviosoException {
+	public void queAlCapturarUnProfugoComoCazadorRuralSeRegistreEnCapturados()
+			throws NoPuedeSerNerviosoException, HabilidadInvalidaException {
 		Cazador cazador = new CazadorRural(60);
 		Profugo profugo = new Profugo(34, 14, true);
 		cazador.puedeCapturar(profugo);
@@ -47,7 +51,8 @@ public class CazadoresTest {
 	}
 
 	@Test
-	public void queUnCazadorSigilosoPuedaCapturarUnProfugo() throws NoPuedeSerNerviosoException {
+	public void queUnCazadorSigilosoPuedaCapturarUnProfugo()
+			throws NoPuedeSerNerviosoException, HabilidadInvalidaException {
 		Cazador cazador = new CazadorSigiloso(60);
 		Profugo profugo = new Profugo(34, 14, false);
 		Boolean valorEsperado = true;
@@ -56,7 +61,8 @@ public class CazadoresTest {
 	}
 
 	@Test
-	public void queAlCapturarUnProfugoComoCazadorSigilosoSeRegistreEnCapturados() throws NoPuedeSerNerviosoException {
+	public void queAlCapturarUnProfugoComoCazadorSigilosoSeRegistreEnCapturados()
+			throws NoPuedeSerNerviosoException, HabilidadInvalidaException {
 		Cazador cazador = new CazadorRural(60);
 		Profugo profugo = new Profugo(34, 14, true);
 		cazador.puedeCapturar(profugo);
@@ -67,8 +73,8 @@ public class CazadoresTest {
 	}
 
 	@Test
-	public void queNoSePuedaCapturarUnProfugoConHabilidadMayorA50PorCazadorSigiloso()
-			throws NoPuedeSerNerviosoException {
+	public void queNoSePuedaCapturarUnProfugoCsonHabilidadMayorA50PorCazadorSigiloso()
+			throws NoPuedeSerNerviosoException, HabilidadInvalidaException {
 		Cazador cazadorUno = new CazadorSigiloso(75);
 		Profugo profugoUno = new Profugo(60, 38, true);
 		Profugo profugoDos = new Profugo(60, 51, true);
@@ -79,7 +85,8 @@ public class CazadoresTest {
 	}
 
 	@Test
-	public void queUnCazadorSigilosoIntimideAUnProfugoConMayorHabilidad() throws NoPuedeSerNerviosoException {
+	public void queUnCazadorSigilosoIntimideAUnProfugoConMayorHabilidad()
+			throws NoPuedeSerNerviosoException, HabilidadInvalidaException {
 		Profugo profugo = new Profugo(60, 55, false);
 		Cazador cazador = new CazadorSigiloso(75);
 		Zona zona = new Zona("Texas");
@@ -91,11 +98,21 @@ public class CazadoresTest {
 	}
 
 	@Test(expected = NoPuedeSerNerviosoException.class)
-	public void queUnCazadorUrbanoNoPuedaCapturarUnProfugoElite() throws NoPuedeSerNerviosoException {
+	public void queUnCazadorUrbanoNoPuedaCapturarUnProfugoElite()
+			throws NoPuedeSerNerviosoException, HabilidadInvalidaException {
 		Cazador cazador = new CazadorUrbano(30);
 		Profugo profugo = new Profugo(34, 14, true);
-		profugo.entrenarArtesMarciales();
 		profugo.entrenarElite();
-		cazador.puedeCapturar(profugo);
+		assertFalse(cazador.puedeCapturar(profugo));
 	}
+	
+	@Test()
+	public void queUnCazadorNoPuedeCapturarUnProfugoConProteccionLegal()
+			throws NoPuedeSerNerviosoException, HabilidadInvalidaException {
+		Cazador cazador = new CazadorUrbano(30);
+		Profugo profugo = new Profugo(34, 14, true);
+		profugo.proteccionLegal();
+		assertFalse(cazador.puedeCapturar(profugo));
+	}
+
 }
